@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLabel, QLayout,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QLineEdit, QMainWindow, QPushButton, QRadioButton,
+    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -55,16 +55,43 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer)
 
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.regression_chk = QRadioButton(self.centralwidget)
+        self.regression_chk.setObjectName(u"regression_chk")
+        self.regression_chk.setMinimumSize(QSize(180, 30))
+        self.regression_chk.setMaximumSize(QSize(180, 30))
+        font2 = QFont()
+        font2.setFamilies([u"Noto Sans SC"])
+        font2.setPointSize(14)
+        self.regression_chk.setFont(font2)
+        self.regression_chk.setStyleSheet(u"background: none;")
+        self.regression_chk.setChecked(True)
+
+        self.verticalLayout_2.addWidget(self.regression_chk)
+
+        self.polinom_chk = QRadioButton(self.centralwidget)
+        self.polinom_chk.setObjectName(u"polinom_chk")
+        self.polinom_chk.setMinimumSize(QSize(180, 30))
+        self.polinom_chk.setMaximumSize(QSize(180, 30))
+        self.polinom_chk.setFont(font2)
+        self.polinom_chk.setStyleSheet(u"background: none;")
+
+        self.verticalLayout_2.addWidget(self.polinom_chk)
+
+
+        self.horizontalLayout_4.addLayout(self.verticalLayout_2)
+
         self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.X_label = QLabel(self.centralwidget)
         self.X_label.setObjectName(u"X_label")
         self.X_label.setMinimumSize(QSize(150, 50))
         self.X_label.setMaximumSize(QSize(150, 50))
-        font2 = QFont()
-        font2.setFamilies([u"Noto Sans SC"])
-        font2.setPointSize(16)
-        self.X_label.setFont(font2)
+        font3 = QFont()
+        font3.setFamilies([u"Noto Sans SC"])
+        font3.setPointSize(16)
+        self.X_label.setFont(font3)
         self.X_label.setStyleSheet(u"background: none;")
         self.X_label.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
@@ -74,10 +101,7 @@ class Ui_MainWindow(object):
         self.X_input.setObjectName(u"X_input")
         self.X_input.setMinimumSize(QSize(350, 30))
         self.X_input.setMaximumSize(QSize(500, 30))
-        font3 = QFont()
-        font3.setFamilies([u"Noto Sans SC"])
-        font3.setPointSize(14)
-        self.X_input.setFont(font3)
+        self.X_input.setFont(font2)
         self.X_input.setStyleSheet(u"background: #F9F9F9;")
         self.X_input.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
@@ -92,7 +116,7 @@ class Ui_MainWindow(object):
         self.Y_label.setObjectName(u"Y_label")
         self.Y_label.setMinimumSize(QSize(150, 50))
         self.Y_label.setMaximumSize(QSize(150, 50))
-        self.Y_label.setFont(font2)
+        self.Y_label.setFont(font3)
         self.Y_label.setStyleSheet(u"background: none;")
 
         self.verticalLayout.addWidget(self.Y_label)
@@ -101,7 +125,7 @@ class Ui_MainWindow(object):
         self.Y_input.setObjectName(u"Y_input")
         self.Y_input.setMinimumSize(QSize(350, 30))
         self.Y_input.setMaximumSize(QSize(500, 30))
-        self.Y_input.setFont(font3)
+        self.Y_input.setFont(font2)
         self.Y_input.setStyleSheet(u"background: #F9F9F9;")
 
         self.verticalLayout.addWidget(self.Y_input)
@@ -174,6 +198,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.window_title.setText(QCoreApplication.translate("MainWindow", u"I\u043d\u0442\u0435\u0440\u043f\u043e\u043b\u044f\u0446i\u044f \u0442\u0430 \u0435\u043a\u0441\u0442\u0440\u0430\u043f\u043e\u043b\u044f\u0446i\u044f, \u0430\u043f\u0440\u043e\u043a\u0441\u0438\u043c\u0430\u0446i\u044f, \u0440\u0435\u0433\u0440\u0435\u0441i\u044f", None))
+        self.regression_chk.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0433\u0440\u0435\u0441\u0456\u044f", None))
+        self.polinom_chk.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0456\u043d\u043e\u043c", None))
         self.X_label.setText(QCoreApplication.translate("MainWindow", u"\u0425 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u0438:", None))
         self.Y_label.setText(QCoreApplication.translate("MainWindow", u"Y \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u0438:", None))
         self.img_place.setText("")

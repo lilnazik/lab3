@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QVBoxLayout, QLabel, QDialogButtonBox
 from PySide6.QtGui import QPixmap, QIcon
 from UI.main_window import Ui_MainWindow
-from services.calculations import linear_regression
+from services.calculations import linear_regression, lagrange_interpolation
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -34,8 +34,32 @@ class MainWindow(QMainWindow):
             if dlg.exec():
                 return
         
-        m, b = linear_regression(x, y)
-        self.plot_regression(x, y, m, b)
+        if len(x) != len(y):
+            dlg = CustomDialog("Кількість елементів X та Y має бути однаковою")
+            if dlg.exec():
+                return
+        
+        if self.ui.regression_chk.isChecked():
+            m, b = linear_regression(x, y)
+            self.plot_regression(x, y, m, b)
+        else:
+            self.plot_lagrange_interpolation(x, y, min(x), max(x))
+    
+    def plot_lagrange_interpolation(self, x_points, y_points, xmin, xmax):
+        plt.figure(figsize=(6, 4.5), dpi=100)
+        
+        x_vals = np.linspace(xmin, xmax, 100)
+        y_vals = [lagrange_interpolation(x_points, y_points, x) for x in x_vals]
+        
+        plt.plot(x_vals, y_vals, label="Поліном Лагранжа", color="green")
+        plt.scatter(x_points, y_points, color="blue", label="Точки інтерполяції")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.title("Інтерполяція поліномом Лагранжа")
+        plt.legend()
+        plt.grid(True)
+        plt.savefig('plot.png')
+        self.ui.img_place.setPixmap(QPixmap("plot.png"))
     
     def plot_regression(self, x, y, m, b):
         
