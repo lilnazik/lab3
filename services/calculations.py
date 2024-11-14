@@ -27,3 +27,18 @@ def linear_regression(x, y):
     b = (sum_s(y) - m * sum_s(x)) / n
     
     return m, b
+
+def squares_fit(x, y):
+    n = len(x)
+    
+    # Розраховуємо необхідні суми
+    sum_y = sum_s(y)
+    sum_1_x = sum_s(1 / x)
+    sum_y_over_x = sum_s(y / x)
+    sum_1_over_x_squared = sum_s(1 / x ** 2)
+    
+    # Розрахунок параметрів a та b з системи рівнянь
+    b = (n * sum_y_over_x - sum_y * sum_1_x) / (n * sum_1_over_x_squared - sum_1_x ** 2)
+    a = (sum_y - b * sum_1_x) / n
+    
+    return a, b

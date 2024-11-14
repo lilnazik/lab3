@@ -70,6 +70,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.regression_chk)
 
+        self.curve_regression_chk = QRadioButton(self.centralwidget)
+        self.curve_regression_chk.setObjectName(u"curve_regression_chk")
+        self.curve_regression_chk.setMinimumSize(QSize(220, 30))
+        self.curve_regression_chk.setFont(font2)
+        self.curve_regression_chk.setStyleSheet(u"background: none;")
+
+        self.verticalLayout_2.addWidget(self.curve_regression_chk)
+
         self.polinom_chk = QRadioButton(self.centralwidget)
         self.polinom_chk.setObjectName(u"polinom_chk")
         self.polinom_chk.setMinimumSize(QSize(180, 30))
@@ -199,6 +207,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.window_title.setText(QCoreApplication.translate("MainWindow", u"I\u043d\u0442\u0435\u0440\u043f\u043e\u043b\u044f\u0446i\u044f \u0442\u0430 \u0435\u043a\u0441\u0442\u0440\u0430\u043f\u043e\u043b\u044f\u0446i\u044f, \u0430\u043f\u0440\u043e\u043a\u0441\u0438\u043c\u0430\u0446i\u044f, \u0440\u0435\u0433\u0440\u0435\u0441i\u044f", None))
         self.regression_chk.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0433\u0440\u0435\u0441\u0456\u044f", None))
+        self.curve_regression_chk.setText(QCoreApplication.translate("MainWindow", u"\u041a\u0440\u0438\u0432\u043e\u043b\u0456\u043d\u0456\u0439\u043d\u0430 \u0440\u0435\u0433\u0440\u0435\u0441\u0456\u044f", None))
         self.polinom_chk.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u043b\u0456\u043d\u043e\u043c", None))
         self.X_label.setText(QCoreApplication.translate("MainWindow", u"\u0425 \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u0438:", None))
         self.Y_label.setText(QCoreApplication.translate("MainWindow", u"Y \u043a\u043e\u043e\u0440\u0434\u0438\u043d\u0430\u0442\u0438:", None))

@@ -111,6 +111,28 @@ font-family: Noto Sans SC;</string>
          </widget>
         </item>
         <item>
+         <widget class="QRadioButton" name="curve_regression_chk">
+          <property name="minimumSize">
+           <size>
+            <width>220</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Noto Sans SC</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background: none;</string>
+          </property>
+          <property name="text">
+           <string>Криволінійна регресія</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QRadioButton" name="polinom_chk">
           <property name="minimumSize">
            <size>

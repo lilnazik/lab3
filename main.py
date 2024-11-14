@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QVBoxLayout, QLabel, QDialogButtonBox
 from PySide6.QtGui import QPixmap, QIcon
 from UI.main_window import Ui_MainWindow
-from services.calculations import linear_regression, lagrange_interpolation
+from services.calculations import linear_regression, lagrange_interpolation, squares_fit
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -42,8 +42,31 @@ class MainWindow(QMainWindow):
         if self.ui.regression_chk.isChecked():
             m, b = linear_regression(x, y)
             self.plot_regression(x, y, m, b)
-        else:
+        elif self.ui.polinom_chk.isChecked():
             self.plot_lagrange_interpolation(x, y, min(x), max(x))
+        else:
+            a, b = squares_fit(x, y)
+            self.plot_square_regression(x, y, a, b)
+    
+    def plot_square_regression(self, x, y, a, b):
+        
+        x_fit_manual = np.linspace(min(x), max(x), 100)
+        y_fit_manual = a + b / x_fit_manual
+
+        plt.figure(figsize=(6, 4.5), dpi=100)
+        
+        plt.plot(x_fit_manual, y_fit_manual, '-', label=f'Регресія: y = {a:.2f} + {b:.2f}/x', color='green')
+        plt.plot(x, y, 'o', label="Експериментальні дані", color="blue")
+        
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.title("Криволінійна регресія методом найменших квадратів")
+        
+        plt.legend()
+        plt.grid(True)
+        
+        plt.savefig('plot.png')
+        self.ui.img_place.setPixmap(QPixmap("plot.png"))
     
     def plot_lagrange_interpolation(self, x_points, y_points, xmin, xmax):
         plt.figure(figsize=(6, 4.5), dpi=100)
@@ -65,7 +88,6 @@ class MainWindow(QMainWindow):
         
         plt.figure(figsize=(6, 4.5), dpi=100)
         plt.scatter(x, y, color='blue', label='Експериментальні точки')
-        
         y_pred = m * x + b
         plt.plot(x, y_pred, color='green', label='Лінія регресії')
         
